@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:temas/src/routes/routes.dart';
 
 class LauncherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Diseños en Flutter'),
-        ),
+        centerTitle: true,
+        title: Text('Diseños en Flutter'),
       ),
       drawer: _MenuPrincipal(),
       body: _ListaOpciones(),
@@ -22,18 +22,23 @@ class _ListaOpciones extends StatelessWidget {
     return ListView.separated(
       physics: BouncingScrollPhysics(),
       separatorBuilder: (context, i) => Divider(color: Colors.blue),
-      itemCount: 10,
+      itemCount: pageRoutes.length,
       itemBuilder: (context, i) => ListTile(
         leading: FaIcon(
-          FontAwesomeIcons.slideshare,
+          pageRoutes[i].icon,
           color: Colors.blue,
         ),
-        title: Text('Hola Mundo'),
+        title: Text(pageRoutes[i].titulo),
         trailing: Icon(
           Icons.chevron_right,
           color: Colors.blue,
         ),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => pageRoutes[i].page));
+        },
       ),
     );
   }
