@@ -9,9 +9,16 @@
 // import 'package:temas/src/retos/cuadrado_animado_page.dart';
 // import 'src/pages/slideshow_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:temas/src/pages/launcher_page.dart';
+import 'package:temas/src/theme/theme.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (_) => ThemeChanger(),
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
