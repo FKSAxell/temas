@@ -7,8 +7,12 @@ import 'package:temas/src/theme/theme.dart';
 class LauncherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: (appTheme.darkTheme)
+            ? Colors.black12
+            : appTheme.currentTheme.primaryColor,
         centerTitle: true,
         title: Text('Diseños en Flutter'),
       ),
@@ -63,7 +67,12 @@ class _MenuPrincipal extends StatelessWidget {
                   backgroundColor: accentColor,
                   child: Text(
                     'AK',
-                    style: TextStyle(fontSize: 50),
+                    style: TextStyle(
+                      fontSize: 50,
+                      color: (appTheme.darkTheme)
+                          ? Colors.white
+                          : appTheme.currentTheme.textTheme.bodyText2.color,
+                    ),
                   ),
                 ),
               ),

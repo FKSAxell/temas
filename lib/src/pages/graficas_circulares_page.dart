@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:temas/src/widgets/radial_progress.dart';
+
+import '../theme/theme.dart';
 
 class GraficasCircularesPage extends StatefulWidget {
   @override
@@ -32,9 +35,12 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomRadiaProgress(porcentaje: porcentaje, color: Colors.blue),
                 CustomRadiaProgress(
                   porcentaje: porcentaje,
+                  color: Colors.blue,
+                ),
+                CustomRadiaProgress(
+                  porcentaje: porcentaje * 1.2,
                   color: Colors.red,
                   gradiente: gradiente,
                 ),
@@ -43,9 +49,10 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CustomRadiaProgress(porcentaje: porcentaje, color: Colors.pink),
                 CustomRadiaProgress(
-                    porcentaje: porcentaje, color: Colors.purple),
+                    porcentaje: porcentaje * 1.4, color: Colors.pink),
+                CustomRadiaProgress(
+                    porcentaje: porcentaje * 1.6, color: Colors.purple),
               ],
             )
           ],
@@ -63,13 +70,14 @@ class CustomRadiaProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return Container(
         width: 180,
         height: 180,
         child: RadialProgress(
           porcentaje: porcentaje,
           colorPrimario: color,
-          colorSecundario: Colors.grey,
+          colorSecundario: appTheme.textTheme.bodyText2.color,
           grosorPrimario: 10,
           grosorSecundario: 4,
           colorPrimarioGradiente: gradiente,
